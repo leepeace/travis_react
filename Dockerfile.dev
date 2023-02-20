@@ -1,0 +1,23 @@
+#어떤 이미지로부터 새로운 이미지를 생성할지를 지정함
+FROM node:alpine
+
+#해당 경로를 WORKDIR로 지정함
+WORKDIR /usr/src/app
+
+# package.json을 먼저 복사해서 캐싱된 모듈을 사용하게 함으로써 빌드 시 불필요한 설치과정을 패스하게 됨
+COPY package.json ./
+
+RUN npm install
+
+# COPY [복사 할 파일 경로] [컨테이너 내에서 파일이 복사될 경로]
+COPY ./ ./
+
+#리액트 핫리로딩을 위해 설정함
+ENV WATCHPACK_POLLING=true
+
+#환경변수 NODE_ENV 의 값을 development 로 설정
+#ENV NODE_ENV development
+
+CMD ["npm", "run", "start"]
+
+#ENV CHOKIDAR_USEPOLLING=true
