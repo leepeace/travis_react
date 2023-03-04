@@ -13,3 +13,8 @@ sudo: required
   after_success:
     - echo "Test success"
     
+
+notifications:
+  email:
+    recipients:
+      - 2haemin11@gmail.com
