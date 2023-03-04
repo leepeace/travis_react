@@ -12,7 +12,10 @@ sudo: required
   
   after_success:
     - echo "Test success"
-    
+
+branches:
+  only:
+  -master  
 
 notifications:
   email:
